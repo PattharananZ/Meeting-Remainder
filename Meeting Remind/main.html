@@ -1,0 +1,385 @@
+
+<head>
+    <title>Meeting Reminder</title>
+    <link rel="icon" href="logo.png">
+    <link href="https://fonts.googleapis.com/css?family=Oleo+Script+Swash+Caps&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Mitr&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<link rel="stylesheet" type="text/css" href="jquery.datetimepicker.css">
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="jquery.datetimepicker.js"></script>
+
+</head>
+<mobile>
+    <div class="mobile-status-bar">
+        <img src="https://i.imgur.com/XSqz2K4.png" alt="">
+
+    </div>
+    <style>
+        body {
+            padding: 1em;
+            background: #666;
+            font-family: 'Mitr', sans-serif;
+        }
+
+        mobile {
+            display: flex;
+            flex-flow: column nowrap;
+            background: #FAFAFA;
+            margin: auto;
+            width: 414px;
+            height: 736px;
+            box-shadow: 0px 12px 24px #0004;
+        }
+
+        .mobile-status-bar img {
+            width: 100%;
+        }
+
+        .mobile-container {
+            height: 100%;
+            overflow: auto;
+        }
+
+        nav {
+            font-size: 20px;
+            color: #ffffff;
+            background-color: rgb(4, 3, 54);
+            text-align: center;
+            padding: .5em;
+            border-bottom: 3px solid #06003d;
+        }
+        .nav2 {
+            font-size: 20px;
+            color: #ffffff;
+            background-color: rgb(4, 3, 54);
+            text-align: center;
+            padding: .5em;
+            border-bottom: 3px solid #06003d;
+        }
+
+        .bottomnav {
+            font-size: 20px;
+            color: #f44336;
+            text-align: center;
+            border-top: 3px solid #f44336;
+            margin-top: 0;
+        }
+
+        .page {
+            padding: 1em;
+            background-color: rgb(213, 222, 252);
+        }
+        .table {
+            color:rgb(0, 0, 0);
+            background-color: rgb(85, 126, 187);
+            border-radius: 10px;
+            margin-top: 5px;
+            margin-left: 3px;
+            margin-right: 3px;
+            padding: 1px;
+        }
+
+        .tab {
+            color:rgb(175, 175, 218);
+            background-color: rgb(25, 24, 85);
+            border-radius: 50px;
+            margin-top: 5px;
+            margin-left: 3px;
+            margin-right: 3px;
+            padding: 1px;
+        }
+        .tab2 {
+            color:rgb(206, 175, 218);
+            background-color: rgb(56, 2, 70);
+            border-radius: 50px;
+            margin-top: 5px;
+            margin-left: 3px;
+            margin-right: 3px;
+            padding: 1px;
+        }
+        .tab3 {
+            color:rgb(218, 175, 181);
+            background-color: rgb(66, 7, 17);
+            border-radius: 50px;
+            margin-top: 5px;
+            margin-left: 3px;
+            margin-right: 3px;
+            padding: 1px;
+        }
+        .add {
+            color:rgb(255, 255, 255);
+            background-color: rgb(97, 96, 121);
+            border-radius: 50px;
+            margin-top: 5px;
+            margin-left: 25%;
+            margin-right: 3px;
+            padding: 1px;
+            width: 50%;
+        }
+        .backk {
+            color:rgb(255, 255, 255);
+            background-color: rgb(97, 96, 121);
+            border-radius: 50px;
+            margin-top: 5px;
+            margin-left: 3%;
+            margin-right: 3px;
+            padding: 1px;
+            width: 30%;
+        }
+        .finish {
+            color:rgb(255, 255, 255);
+            background-color: rgb(175, 0, 0);
+            border-radius: 50px;
+            margin-top: 5px;
+            margin-left: 20%;
+            margin-right: 3px;
+            padding: 1px;
+            width: 20%;
+        }
+        
+        #show {
+            color: white;
+            text-align: center;
+            
+        }
+
+        #show-pic {
+            width: 50px;
+            height: 50px;
+            margin-top: 12%;
+        }
+
+        .Settingbutton {
+            font-size: 15px;
+            width: 80%;
+            border: 0px;
+            width: 120px;
+            padding: .5em;
+            background-color: transparent;
+        }
+
+        .size-pic {
+            width: 50px;
+            height: 50px;
+        }
+        h2{
+            font-size: 12px;
+            font-family: 'Oleo Script Swash Caps', cursive;
+        }
+        h1{
+            font-size: 22px;
+            
+        }
+        .dd{
+            margin-top: -3%;
+        }
+        h3{
+            font-size: 40px;
+            color: rgb(255, 255, 255);
+            margin-left: 5%;
+        }
+        h4{
+            font-size: 12px;
+            margin-left: 5%;
+            margin-top: -4%;
+        }
+        h5{
+            font-size: 18px;
+        }
+        h6{
+            font-size: 24px;
+            color: #8392bd;
+            margin-left: 15%;
+        }
+        .show-status{
+            margin-left: 15%;
+        }
+        textarea{
+  width:100%;
+  border-radius:.3em;
+  font-size:1rem;
+  padding:1em;
+  box-sizing:border-box;
+}
+    </style>
+    <div class='mobile-container'>
+        <nav><h2>Meeting Reminder</h2>
+            <img class ="dd"src="logoMR.png" alt="" height="60px" width="60px">
+            <h1 id="status-t">ตารางแจ้งเตือนประชุม</h1>
+        </nav>
+
+        <div class="page">
+            <div id="home" style="display: block; height: 540;">
+                <div class="show-status">
+                    <h6>ลำดับความสำคัญ</h6>
+                    <div class="col-md-12">
+                    <div style="display:inline-block;width:20px;height:20px;background: rgb(25, 24, 85)"></div>
+                    ทั่วไป
+                    <div style="display:inline-block;width:20px;height:20px;background: rgb(56, 2, 70)"></div>
+                    สำคัญ
+                    <div style="display:inline-block;width:20px;height:20px;background: rgb(66, 7, 17)"></div>
+                    สำคัญมาก
+                </div>
+                </div>
+                <div class="row tab">
+                    <div class="col-md-9 left-col">
+                        <h3>10.30</h3>
+                        <h4>12 เมษายน 2563 ไอทีลาดกระบัง</h4>
+                    </div>
+                    <div class="col-md-3 show">
+                        <img src="show.png" id="show-pic" alt="">
+                    </div>
+                </div>
+
+                <div class="row tab2">
+                    <div class="col-md-9 left-col">
+                        <h3>18.30</h3>
+                        <h4>20 เมษายน 2563 ออนไลน์ Discord</h4>
+                    </div>
+                    <div class="col-md-3 show">
+                        <img src="show.png" id="show-pic" alt="">
+                    </div>
+                </div>
+
+                <div class="row tab3">
+                    <div class="col-md-9 left-col">
+                        <h3>15.45</h3>
+                        <h4>10 พฤษภาคม 2563 สยามเซ็นเตอร์</h4>
+                    </div>
+                    <div class="col-md-3 show">
+                        <img src="show.png" id="show-pic" alt="">
+                    </div>
+                </div>
+
+                <div class="row tab">
+                    <div class="col-md-9 left-col">
+                        <h3>20.10</h3>
+                        <h4>25 กรกฎาคม 2563 โซล</h4>
+                    </div>
+                    <div class="col-md-3 show">
+                        <img src="show.png" id="show-pic" alt="">
+                    </div>
+                </div>
+                        <button class="add" onclick="addlist()">
+                           <h5>เพิ่มการแจ้งเตือน</h5>
+                        </button>
+                    </div>
+
+                    <div id="history" style="display: none; height: 540;">
+                        <div class= "titleH">
+                            <h1>ประวัติการแจ้งเตือน</h1><br>
+                        </div> 
+                            <div class="col-md-12 left-col">
+                                <h4>1.||03/03/63 18:55น. สนามบาส (จะมีบอกสถานะเก่าด้วยครับ)</h4><br>
+                                <h4>2.||05/03/63 18:55น. สนามบาส (จะมีบอกสถานะเก่าด้วยครับ)</h4><br>
+                                <h4>3.||05/03/63 18:55น. สนามบาส (จะมีบอกสถานะเก่าด้วยครับ)</h4><br>
+                                <h4>4.||07/03/63 18:55น. สนามบาส (จะมีบอกสถานะเก่าด้วยครับ)</h4><br>
+                                <h4>5.||08/03/63 18:55น. สนามบาส (จะมีบอกสถานะเก่าด้วยครับ)</h4><br>
+                                <h4>6.||09/03/63 18:55น. สนามบาส (จะมีบอกสถานะเก่าด้วยครับ)</h4><br>
+                                <h4>7.||13/03/63 18:55น. สนามบาส (จะมีบอกสถานะเก่าด้วยครับ)</h4><br>
+                                <h4>8.||23/03/63 18:55น. สนามบาส (จะมีบอกสถานะเก่าด้วยครับ)</h4>
+        
+                            </div>
+                                <button class="add" onclick="back()">
+                                   <h5>ย้อนกลับ</h5>
+                                </button>
+                            </div>
+                            <div id="remind" style="display: none; height: 540;">
+                                <div class= "titleH">
+                                    <h1>ตั้งค่าการแจ้งเตือน</h1><br>
+                                </div> 
+                                    <div class="col-md-12 left-col">
+                                        <form>
+                                            <label for="dt">Date: </label>
+                                             <input name="dt" type="datetime-local"/>
+                                             <input type="submit"/>
+                                        </form>
+                                        <h6> สถานที่</h6>
+                                        <input type="text" placeholder="ไอทีลาดกระบัง">
+                                        <h6> โน้ตเพิ่มเติม</h6>
+                                        <textarea placeholder="ใส่อะไรก็ได้ครับ เทสๆ" rows="10"></textarea>
+
+
+                                    </div>
+                                    <button class="finish" onclick="back()">
+                                    <h5>ยืนยัน</h5>
+                                     </button>
+                                    <button class="backk" onclick="back()">
+                                    <h5>ย้อนกลับ</h5>
+                                    </button>
+                                        
+                                    </div>
+            </div>
+
+            
+
+
+        <div class="nav2">
+            <button class="Settingbutton" onclick="HomeZ()">
+                <img src="home.png" class="size-pic">
+                <br>
+            </button>
+            <button class="Settingbutton" onclick="HistoryZ()">
+                <img src="history.png" class="size-pic">
+                <br>
+            </button>
+            <button class="Settingbutton" onclick="RankingZ()">
+                <img src="ranking.png" class="size-pic">
+                <br>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function HomeZ() {
+            document.getElementById("home").style.display = "block"
+            document.getElementById("history").style.display = "none"
+            document.getElementById("ranking").style.display = "none"
+            document.getElementById("remind").style.display = "none"
+        }
+
+        function HistoryZ() {
+            document.getElementById("home").style.display = "none"
+            document.getElementById("history").style.display = "block"
+            document.getElementById("ranking").style.display = "none"
+            document.getElementById("remind").style.display = "none"
+        }
+
+
+        function RankingZ() {
+            document.getElementById("home").style.display = "none"
+            document.getElementById("history").style.display = "none"
+            document.getElementById("ranking").style.display = "block"
+            document.getElementById("remind").style.display = "none"
+        }
+        function addlist() {
+            document.getElementById("remind").style.display = "inline-block"
+            document.getElementById("home").style.display = "none"
+            document.getElementById("history").style.display = "none"
+            document.getElementById("ranking").style.display = "none"
+            
+        }
+        function back() {
+            document.getElementById("home").style.display = "block"
+            document.getElementById("remind").style.display = "none"
+            document.getElementById("history").style.display = "none"
+            document.getElementById("ranking").style.display = "none"
+            
+        }
+
+        function timeFunction() {
+            if (document.getElementById("now").checked) {
+                document.getElementById("input_time").disabled = true
+            }
+            else if (document.getElementById('picktime').checked) {
+                document.getElementById("time").disabled = false
+            }
+        }
+
+
+    </script>
+</mobile>
