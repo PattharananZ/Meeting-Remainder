@@ -1,16 +1,52 @@
-
 <head>
     <title>Meeting Reminder</title>
     <link rel="icon" href="logo.png">
     <link href="https://fonts.googleapis.com/css?family=Oleo+Script+Swash+Caps&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Mitr&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Mitr&display=swap" rel="stylesheet">
 
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="shortcut icon" href="assets/fav.ico" />
+    <link rel="apple-touch-icon" sizes="72x72" href="logoR.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="logoR.png">
+    <link rel="apple-touch-icon" href="logoR.png">
+    <meta name="apple-mobile-web-app-title" content="MeetingRemind">
 
-<link rel="stylesheet" type="text/css" href="jquery.datetimepicker.css">
-<script type="text/javascript" src="jquery.js"></script>
-<script type="text/javascript" src="jquery.datetimepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="jquery.datetimepicker.css">
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="jquery.datetimepicker.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+    https://firebase.google.com/docs/web/setup#available-libraries -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyAk09wjmuw9hq7IejfJWeEW4AqajgcnvoM",
+            authDomain: "meeting-remainder.firebaseapp.com",
+            databaseURL: "https://meeting-remainder.firebaseio.com",
+            projectId: "meeting-remainder",
+            storageBucket: "meeting-remainder.appspot.com",
+            messagingSenderId: "950640963881",
+            appId: "1:950640963881:web:e42ccad55079ebecd98738",
+            measurementId: "G-XMEFNED1FN"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-auth.js"></script>
 
 </head>
 <mobile>
@@ -20,7 +56,6 @@
     </div>
     <style>
         body {
-            padding: 1em;
             background: #666;
             font-family: 'Mitr', sans-serif;
         }
@@ -42,39 +77,35 @@
         .mobile-container {
             height: 100%;
             overflow: auto;
+            background-image: url(bg_main.jpg);
+            background-size: contain;
         }
 
         nav {
             font-size: 20px;
             color: #ffffff;
-            background-color: rgb(4, 3, 54);
             text-align: center;
             padding: .5em;
-            border-bottom: 3px solid #06003d;
         }
+
+
         .nav2 {
             font-size: 20px;
             color: #ffffff;
-            background-color: rgb(4, 3, 54);
+            background-image: linear-gradient(rgb(20, 36, 105), #050136);
             text-align: center;
             padding: .5em;
-            border-bottom: 3px solid #06003d;
         }
 
-        .bottomnav {
-            font-size: 20px;
-            color: #f44336;
-            text-align: center;
-            border-top: 3px solid #f44336;
-            margin-top: 0;
-        }
 
         .page {
             padding: 1em;
-            background-color: rgb(213, 222, 252);
+
+            margin-top: -1;
         }
+
         .table {
-            color:rgb(0, 0, 0);
+            color: rgb(0, 0, 0);
             background-color: rgb(85, 126, 187);
             border-radius: 10px;
             margin-top: 5px;
@@ -84,34 +115,37 @@
         }
 
         .tab {
-            color:rgb(175, 175, 218);
-            background-color: rgb(25, 24, 85);
+            color: rgb(0, 70, 29);
+            background-color: rgb(174, 219, 147);
             border-radius: 50px;
             margin-top: 5px;
             margin-left: 3px;
             margin-right: 3px;
             padding: 1px;
         }
+
         .tab2 {
-            color:rgb(206, 175, 218);
-            background-color: rgb(56, 2, 70);
+            color: rgb(0, 39, 112);
+            background-color: rgb(63, 110, 182);
             border-radius: 50px;
             margin-top: 5px;
             margin-left: 3px;
             margin-right: 3px;
             padding: 1px;
         }
+
         .tab3 {
-            color:rgb(218, 175, 181);
-            background-color: rgb(66, 7, 17);
+            color: rgb(88, 8, 112);
+            background-color: rgb(137, 77, 139);
             border-radius: 50px;
             margin-top: 5px;
             margin-left: 3px;
             margin-right: 3px;
             padding: 1px;
         }
+
         .add {
-            color:rgb(255, 255, 255);
+            color: rgb(255, 255, 255);
             background-color: rgb(97, 96, 121);
             border-radius: 50px;
             margin-top: 5px;
@@ -120,8 +154,9 @@
             padding: 1px;
             width: 50%;
         }
+
         .backk {
-            color:rgb(255, 255, 255);
+            color: rgb(255, 255, 255);
             background-color: rgb(97, 96, 121);
             border-radius: 50px;
             margin-top: 5px;
@@ -130,8 +165,9 @@
             padding: 1px;
             width: 30%;
         }
+
         .finish {
-            color:rgb(255, 255, 255);
+            color: rgb(255, 255, 255);
             background-color: rgb(175, 0, 0);
             border-radius: 50px;
             margin-top: 5px;
@@ -140,11 +176,11 @@
             padding: 1px;
             width: 20%;
         }
-        
+
         #show {
             color: white;
             text-align: center;
-            
+
         }
 
         #show-pic {
@@ -166,186 +202,314 @@
             width: 50px;
             height: 50px;
         }
-        h2{
+
+        h2 {
             font-size: 12px;
             font-family: 'Oleo Script Swash Caps', cursive;
         }
-        h1{
+
+        h1 {
             font-size: 22px;
-            
+            margin-left: 10%;
+            color: white
         }
-        .dd{
+
+        .dd {
             margin-top: -3%;
         }
-        h3{
+
+        h3 {
             font-size: 40px;
             color: rgb(255, 255, 255);
             margin-left: 5%;
         }
-        h4{
+
+        h4 {
             font-size: 12px;
             margin-left: 5%;
             margin-top: -4%;
         }
-        h5{
+
+        h5 {
             font-size: 18px;
         }
-        h6{
+
+        h6 {
             font-size: 24px;
-            color: #8392bd;
+            color: #00124e;
+
+        }
+
+        .show-status {
             margin-left: 15%;
         }
-        .show-status{
-            margin-left: 15%;
+
+        textarea {
+            width: 100%;
+            border-radius: .3em;
+            font-size: 1rem;
+            padding: 1em;
+            box-sizing: border-box;
         }
-        textarea{
-  width:100%;
-  border-radius:.3em;
-  font-size:1rem;
-  padding:1em;
-  box-sizing:border-box;
-}
+
+        #sidebar-wrapper {
+            margin-right: -250px;
+            width: 250px;
+            background: rgb(0, 0, 0);
+            position: fixed;
+            height: 100%;
+            overflow-y: auto;
+            z-index: 1000;
+            transition: all 0.5s ease-in 0s;
+            -webkit-transition: all 0.5s ease-in 0s;
+            -moz-transition: all 0.5s ease-in 0s;
+            -ms-transition: all 0.5s ease-in 0s;
+            -o-transition: all 0.5s ease-in 0s;
+        }
+
+        .sidebar-nav {
+            position: absolute;
+            top: 0;
+            width: 250px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .sidebar-nav li {
+            line-height: 50px;
+            text-indent: 20px;
+        }
+
+        .sidebar-nav li a {
+            color: #999999;
+            display: block;
+            text-decoration: none;
+        }
+
+        .sidebar-nav li a:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.2);
+            text-decoration: none;
+        }
+
+        .sidebar-nav li a:active,
+        .sidebar-nav li a:focus {
+            text-decoration: none;
+        }
+
+        .sidebar-nav>.sidebar-brand {
+            height: 55px;
+            line-height: 55px;
+            font-size: 18px;
+        }
+
+        .sidebar-nav>.sidebar-brand a {
+            color: #999999;
+        }
+
+        .sidebar-nav>.sidebar-brand a:hover {
+            color: #fff;
+            background: none;
+        }
+
+        #menu-toggle {
+            position: fixed;
+            z-index: 10000;
+            font-size: 5px;
+            background-color: rgb(43, 46, 202);
+            border-color: rgb(43, 46, 202);
+            margin-left: 1%;
+        }
+
+        #sidebar-wrapper.active {
+            right: 0px;
+            width: 0px;
+            transition: all 0.5s ease-out 0s;
+            -webkit-transition: all 0.5s ease-out 0s;
+            -moz-transition: all 0.5s ease-out 0s;
+            -ms-transition: all 0.5s ease-out 0s;
+            -o-transition: all 0.5s ease-out 0s;
+        }
+
+        .toggle {
+            margin: 5px 5px 0 0;
+        }
     </style>
     <div class='mobile-container'>
-        <nav><h2>Meeting Reminder</h2>
-            <img class ="dd"src="logoMR.png" alt="" height="60px" width="60px">
-            <h1 id="status-t">ตารางแจ้งเตือนประชุม</h1>
+
+        <nav>
+            <h2>Meeting Reminder</h2>
+            <img class="dd" src="logoMR.png" alt="" height="60px" width="60px">
+
         </nav>
 
         <div class="page">
             <div id="home" style="display: block; height: 540;">
                 <div class="show-status">
-                    <h6>ลำดับความสำคัญ</h6>
+                    <h1 id="status-t">ตารางแจ้งเตือนประชุม</h1>
                     <div class="col-md-12">
-                    <div style="display:inline-block;width:20px;height:20px;background: rgb(25, 24, 85)"></div>
-                    ทั่วไป
-                    <div style="display:inline-block;width:20px;height:20px;background: rgb(56, 2, 70)"></div>
-                    สำคัญ
-                    <div style="display:inline-block;width:20px;height:20px;background: rgb(66, 7, 17)"></div>
-                    สำคัญมาก
-                </div>
-                </div>
-                <div class="row tab">
-                    <div class="col-md-9 left-col">
-                        <h3>10.30</h3>
-                        <h4>12 เมษายน 2563 ไอทีลาดกระบัง</h4>
-                    </div>
-                    <div class="col-md-3 show">
-                        <img src="show.png" id="show-pic" alt="">
+                        <div style="display:inline-block;width:20px;height:20px;background: rgb(174, 219, 147)"></div>
+                        ทั่วไป
+                        <div style="display:inline-block;width:20px;height:20px;background: rgb(63, 110, 182)"></div>
+                        สำคัญ
+                        <div style="display:inline-block;width:20px;height:20px;background: rgb(137, 77, 139)"></div>
+                        สำคัญมาก
                     </div>
                 </div>
+                <button class="add" onclick="addlist()">
+                    <h5>เพิ่มการแจ้งเตือน</h5>
 
-                <div class="row tab2">
-                    <div class="col-md-9 left-col">
-                        <h3>18.30</h3>
-                        <h4>20 เมษายน 2563 ออนไลน์ Discord</h4>
-                    </div>
-                    <div class="col-md-3 show">
-                        <img src="show.png" id="show-pic" alt="">
-                    </div>
-                </div>
-
-                <div class="row tab3">
-                    <div class="col-md-9 left-col">
-                        <h3>15.45</h3>
-                        <h4>10 พฤษภาคม 2563 สยามเซ็นเตอร์</h4>
-                    </div>
-                    <div class="col-md-3 show">
-                        <img src="show.png" id="show-pic" alt="">
-                    </div>
-                </div>
-
-                <div class="row tab">
-                    <div class="col-md-9 left-col">
-                        <h3>20.10</h3>
-                        <h4>25 กรกฎาคม 2563 โซล</h4>
-                    </div>
-                    <div class="col-md-3 show">
-                        <img src="show.png" id="show-pic" alt="">
-                    </div>
-                </div>
-                        <button class="add" onclick="addlist()">
-                           <h5>เพิ่มการแจ้งเตือน</h5>
-                        </button>
-                    </div>
-
-                    <div id="history" style="display: none; height: 540;">
-                        <div class= "titleH">
-                            <h1>ประวัติการแจ้งเตือน</h1><br>
-                        </div> 
-                            <div class="col-md-12 left-col">
-                                <h4>1.||03/03/63 18:55น. สนามบาส (จะมีบอกสถานะเก่าด้วยครับ)</h4><br>
-                                <h4>2.||05/03/63 18:55น. สนามบาส (จะมีบอกสถานะเก่าด้วยครับ)</h4><br>
-                                <h4>3.||05/03/63 18:55น. สนามบาส (จะมีบอกสถานะเก่าด้วยครับ)</h4><br>
-                                <h4>4.||07/03/63 18:55น. สนามบาส (จะมีบอกสถานะเก่าด้วยครับ)</h4><br>
-                                <h4>5.||08/03/63 18:55น. สนามบาส (จะมีบอกสถานะเก่าด้วยครับ)</h4><br>
-                                <h4>6.||09/03/63 18:55น. สนามบาส (จะมีบอกสถานะเก่าด้วยครับ)</h4><br>
-                                <h4>7.||13/03/63 18:55น. สนามบาส (จะมีบอกสถานะเก่าด้วยครับ)</h4><br>
-                                <h4>8.||23/03/63 18:55น. สนามบาส (จะมีบอกสถานะเก่าด้วยครับ)</h4>
-        
-                            </div>
-                                <button class="add" onclick="back()">
-                                   <h5>ย้อนกลับ</h5>
-                                </button>
-                            </div>
-                            <div id="remind" style="display: none; height: 540;">
-                                <div class= "titleH">
-                                    <h1>ตั้งค่าการแจ้งเตือน</h1><br>
-                                </div> 
-                                    <div class="col-md-12 left-col">
-                                        <form>
-                                            <label for="dt">Date: </label>
-                                             <input name="dt" type="datetime-local"/>
-                                             <input type="submit"/>
-                                        </form>
-                                        <h6> สถานที่</h6>
-                                        <input type="text" placeholder="ไอทีลาดกระบัง">
-                                        <h6> โน้ตเพิ่มเติม</h6>
-                                        <textarea placeholder="ใส่อะไรก็ได้ครับ เทสๆ" rows="10"></textarea>
-
-
-                                    </div>
-                                    <button class="finish" onclick="back()">
-                                    <h5>ยืนยัน</h5>
-                                     </button>
-                                    <button class="backk" onclick="back()">
-                                    <h5>ย้อนกลับ</h5>
-                                    </button>
-                                        
-                                    </div>
+                </button>
+                <p id="data"></p>
+                <p id="date"></p>
             </div>
 
-            
 
 
-        <div class="nav2">
-            <button class="Settingbutton" onclick="HomeZ()">
-                <img src="home.png" class="size-pic">
+        </div>
+
+        <div id="history" style="display: none; height: 540;">
+            <div class="titleH">
+                <h1 id="status-t">ประวัติการแจ้งเตือน</h1><br>
+            </div>
+            <label for="pet-select">Choose a level:</label>
+            <select id="Level-se" onchange="CheckImportant()">
+                <option value="">--Please choose an option--</option>
+                <option value="normal">ทั่วไป</option>
+                <option value="important">สำคัญ</option>
+                <option value="Improtantest">สำคัญมาก</option>
+            </select>
+
+            <div id="showHis " class="col-md-12 left-col">
                 <br>
-            </button>
-            <button class="Settingbutton" onclick="HistoryZ()">
-                <img src="history.png" class="size-pic">
                 <br>
-            </button>
-            <button class="Settingbutton" onclick="RankingZ()">
-                <img src="ranking.png" class="size-pic">
-                <br>
-            </button>
+
+            </div>
+        </div>
+        <div id="remind" style="display: none; height: 540;">
+            <div class="titleH">
+                <h1 id="status-t">ตั้งค่าการแจ้งเตือน</h1><br>
+            </div>
+            <div class="col-md-12 left-col">
+
+                <label for="dt">Date: </label>
+                <input name="dt" id="dateZ" type="datetime-local" />
+                <h6> สถานที่</h6>
+                <input type="text" id="placeZ" placeholder="ไอทีลาดกระบัง">
+                <label for="pet-select">Choose a level:</label>
+                <select id="Level-se">
+                    <option value="">--Please choose an option--</option>
+                    <option value="normal">ทั่วไป</option>
+                    <option value="important">สำคัญ</option>
+                    <option value="Improtantest">สำคัญมาก</option>
+                </select>
+
+                <h6> โน้ตเพิ่มเติม</h6>
+                <textarea id="desZ" placeholder="Description" rows="6"></textarea>
+
+                <button class="finish" onclick="writeDataFB()">
+                    <h5>ยืนยัน</h5>
+                </button>
+                <button class="backk" onclick="back()">
+                    <h5>ย้อนกลับ</h5>
+                </button>
+
+            </div>
+
+
         </div>
     </div>
 
+
+
+
+    <div class="nav2">
+        <button class="Settingbutton" onclick="HomeZ()">
+            <img src="home.png" class="size-pic">
+            <br>
+        </button>
+        <button class="Settingbutton" onclick="HistoryZ()">
+            <img src="history.png" class="size-pic">
+            <br>
+        </button>
+        <button class="Settingbutton" onclick="RankingZ()">
+            <img src="ranking.png" class="size-pic">
+            <br>
+        </button>
+    </div>
+    </div>
+
     <script>
+        // Your web app's Firebase configuration
+
+        var uid;
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+        window.onload = function () {
+            initApp();
+        }
+        function initApp() {
+            firebase.auth().onAuthStateChanged(function (user) {
+                if (user) {
+                    // User is signed in.
+                    var displayName = user.displayName;
+                    var email = user.email;
+                    var emailVerified = user.emailVerified;
+                    var photoURL = user.photoURL;
+                    var isAnonymous = user.isAnonymous;
+                    uid = user.uid;
+                    var providerData = user.providerData;
+                    // ...
+                } else {
+                    // User is signed out.
+                    // ...
+                }
+            });
+        }
+        function writeDataFB() {
+            firebase.auth().onAuthStateChanged(function (user) {
+                var uid = user.uid
+                db.collection("store").add({
+                    date: document.getElementById("dateZ").value,
+                    place: document.getElementById("placeZ").value,
+                    desc: document.getElementById("desZ").value,
+                    level: document.getElementById("Level-se").value,
+                    uid: uid
+                });
+            })
+            writeData()
+        }
+        // User is signed in.
+
+        // function writeData() {
+        //     firebase.auth().onAuthStateChanged(function (user) {
+
+        //         // User is signed in.
+        //         var uid = user.uid
+        //         firebase.database().ref(uid).set({
+        //             date: document.getElementById("dateZ").value,
+        //             place: document.getElementById("placeZ").value,
+        //             desc: document.getElementById("desZ").value
+
+        //         });
+        //     });
+        //     console.log("Send");
+        // }
+
+
+
         function HomeZ() {
             document.getElementById("home").style.display = "block"
             document.getElementById("history").style.display = "none"
-            document.getElementById("ranking").style.display = "none"
+            /* document.getElementById("ranking").style.display = "none" */
             document.getElementById("remind").style.display = "none"
         }
 
         function HistoryZ() {
             document.getElementById("home").style.display = "none"
             document.getElementById("history").style.display = "block"
-            document.getElementById("ranking").style.display = "none"
+            /* document.getElementById("ranking").style.display = "none" */
             document.getElementById("remind").style.display = "none"
         }
 
@@ -360,18 +524,26 @@
             document.getElementById("remind").style.display = "inline-block"
             document.getElementById("home").style.display = "none"
             document.getElementById("history").style.display = "none"
-            document.getElementById("ranking").style.display = "none"
-            
+            /* document.getElementById("ranking").style.display = "none" */
+
+        }
+        function writeData() {
+            document.getElementById("home").style.display = "block"
+            document.getElementById("remind").style.display = "none"
+            document.getElementById("history").style.display = "none"
+            /* document.getElementById("ranking").style.display = "none" */
+
         }
         function back() {
             document.getElementById("home").style.display = "block"
             document.getElementById("remind").style.display = "none"
             document.getElementById("history").style.display = "none"
-            document.getElementById("ranking").style.display = "none"
-            
+            /* document.getElementById("ranking").style.display = "none" */
+
         }
 
         function timeFunction() {
+
             if (document.getElementById("now").checked) {
                 document.getElementById("input_time").disabled = true
             }
@@ -379,7 +551,229 @@
                 document.getElementById("time").disabled = false
             }
         }
+        /* db.collection('store').get().then(snapshot => {
+            snapshot.forEach(doc => {
+                document.getElementById("date").innerHTML = doc.data().date
+                document.getElementById("data").innerHTML = doc.data().place
+
+            }); */
 
 
+        db.collection('store').get().then(snapshot => {
+            snapshot.forEach(doc => {
+                if (doc.data().level == "normal") {
+                    var time = doc.data().date.substring(11)
+                    var time2 = doc.data().date.substring(0, 10)
+                    var place = doc.data().place
+                    var mix = time2 + " " + place
+                    var node_div_1 = document.createElement("div")
+                    var node_div_2 = document.createElement("div")
+                    var node_h3 = document.createElement("h3")
+                    var node_h4 = document.createElement("h4")
+                    var node_div_3 = document.createElement("div")
+                    var node_button1 = document.createElement("button")
+                    var node_img = document.createElement("img")
+                    node_div_1.addEventListener("click", function(){delete_('alert2');})
+                    node_div_1.id = "alert2"
+                    node_div_1.className = "row tab"
+                    node_div_2.className = "col-md-9 left-col"
+                    node_h3.innerHTML = time
+                    node_h4.innerHTML = mix
+                    node_div_2.className = "col-md-9 show"
+                    node_img.src = "show.png"
+                    node_img.id = "Show-pic"
+
+                    node_div_2.appendChild(node_h3)
+                    node_div_2.appendChild(node_h4)
+                    node_div_3.appendChild(node_img)
+                    node_div_1.appendChild(node_div_2)
+                    node_div_1.appendChild(node_div_3)
+                    document.getElementById('home').appendChild(node_div_1)
+                }
+            });
+
+        });
+
+        db.collection('store').get().then(snapshot => {
+            snapshot.forEach(doc => {
+                if (doc.data().level == "Improtantest") {
+                    var time = doc.data().date.substring(11)
+                    var time2 = doc.data().date.substring(0, 10)
+                    var place = doc.data().place
+                    var mix = time2 + " " + place
+                    var node_div_1 = document.createElement("div")
+                    var node_div_2 = document.createElement("div")
+                    var node_h3 = document.createElement("h3")
+                    var node_h4 = document.createElement("h4")
+                    var node_div_3 = document.createElement("div")
+                    var node_button1 = document.createElement("button")
+                    var node_img = document.createElement("img")
+                    node_div_1.addEventListener("click", function(){delete_('alert2');})
+                    node_div_1.id = "alert2"
+                    node_div_1.className = "row tab3"
+                    node_div_2.className = "col-md-9 left-col"
+                    node_h3.innerHTML = time
+                    node_h4.innerHTML = mix
+                    node_div_2.className = "col-md-9 show"
+                    node_img.src = "show.png"
+                    node_img.id = "Show-pic"
+
+                    node_div_2.appendChild(node_h3)
+                    node_div_2.appendChild(node_h4)
+                    node_button1.appendChild(node_img)
+                    node_div_3.appendChild(node_button1)
+                    node_div_1.appendChild(node_div_2)
+                    node_div_1.appendChild(node_div_3)
+                    document.getElementById('home').appendChild(node_div_1)
+                }
+            });
+
+        });
+
+        db.collection('store').get().then(snapshot => {
+            snapshot.forEach(doc => {
+                if (doc.data().level == "important") {
+                    var time = doc.data().date.substring(11)
+                    var time2 = doc.data().date.substring(0, 10)
+                    var place = doc.data().place
+                    var mix = time2 + " " + place
+                    var node_div_1 = document.createElement("div")
+                    var node_div_2 = document.createElement("div")
+                    var node_h3 = document.createElement("h3")
+                    var node_h4 = document.createElement("h4")
+                    var node_div_3 = document.createElement("div")
+                    var node_button1 = document.createElement("button")
+                    var node_img = document.createElement("img")
+                    node_div_1.addEventListener("click", function(){delete_('alert2');})
+                    node_div_1.id = "alert2"
+                    node_div_1.className = "row tab2"
+                    node_div_2.className = "col-md-9 left-col"
+                    node_h3.innerHTML = time
+                    node_h4.innerHTML = mix
+                    node_div_2.className = "col-md-9 show"
+                    node_img.src = "show.png"
+                    node_img.id = "Show-pic"
+
+                    node_div_2.appendChild(node_h3)
+                    node_div_2.appendChild(node_h4)
+                    node_button1.appendChild(node_img)
+                    node_div_3.appendChild(node_button1)
+                    node_div_1.appendChild(node_div_2)
+                    node_div_1.appendChild(node_div_3)
+                    document.getElementById('home').appendChild(node_div_1)
+                }
+            });
+
+        });
+
+        // (document).ready(function () {
+        //     $("button").click(function () {
+        //         // $("row tab").remove();
+        //     });
+        // });
+        
+        function delete_(id) {
+            var home = document.getElementById("home");
+            var dele = document.getElementById(id);
+            console.log(home, dele)
+            home.removeChild(dele);
+        }
+        /*  db.collection('store').get().then(snapshot => {
+             snapshot.forEach(doc => {
+                 var node = document.createElement("div");
+                 var textnode = document.createTextNode(doc.data().date);
+                 node.appendChild(textnode);  
+                 var addtxt = document.getElementById("row tab2").appendChild(node);
+                 document.page.appendChild(addtxt); 
+             });
+ 
+         }); */
+        function CheckImportant() {
+            if (document.getElementById('Level-se').value == "important") {
+                db.collection('store').get().then(snapshot => {
+                    snapshot.forEach(doc => {
+                        if (doc.data().level == "important") {
+                            var time = doc.data().date.substring(11)
+                            var time2 = doc.data().date.substring(0, 10)
+                            var place = doc.data().place
+                            var mix = time + " " + time2 + " " + place
+                            var node_div_1 = document.createElement("div")
+                            var node_div_2 = document.createElement("div")
+                            var node_h3 = document.createElement("h4")
+                            var node_div_3 = document.createElement("div")
+                            var node_img = document.createElement("img")
+                            node_div_1.className = "row"
+                            node_div_2.className = "col-md-9 left-col"
+                            node_h3.innerHTML = mix
+
+                            node_div_2.appendChild(node_h3)
+                            node_div_1.appendChild(node_div_2)
+                            node_div_1.appendChild(node_div_3)
+                            document.getElementById('history').appendChild(node_div_1)
+                        }
+                    });
+
+                });
+            }
+        }
+
+
+        function CheckImportant() {
+            if (document.getElementById('Level-se').value == "normal") {
+                db.collection('store').get().then(snapshot => {
+                    snapshot.forEach(doc => {
+                        if (doc.data().level == "normal") {
+                            var time = doc.data().date.substring(11)
+                            var time2 = doc.data().date.substring(0, 10)
+                            var place = doc.data().place
+                            var mix = time + " " + time2 + " " + place
+                            var node_div_1 = document.createElement("div")
+                            var node_div_2 = document.createElement("div")
+                            var node_h3 = document.createElement("h4")
+                            var node_div_3 = document.createElement("div")
+                            var node_img = document.createElement("img")
+                            node_div_1.className = "row"
+                            node_div_2.className = "col-md-9 left-col"
+                            node_h3.innerHTML = mix
+
+                            node_div_2.appendChild(node_h3)
+                            node_div_1.appendChild(node_div_2)
+                            node_div_1.appendChild(node_div_3)
+                            document.getElementById('history').appendChild(node_div_1)
+                        }
+                    });
+
+                });
+            }
+        }
+
+        function CheckImportant() {
+            if (document.getElementById('Level-se').value == "Improtantest") {
+                db.collection('store').get().then(snapshot => {
+                    snapshot.forEach(doc => {
+                        if (doc.data().level == "Improtantest") {
+                            var time = doc.data().date.substring(11)
+                            var time2 = doc.data().date.substring(0, 10)
+                            var place = doc.data().place
+                            var mix = time + " " + time2 + " " + place
+                            var node_div_1 = document.createElement("div")
+                            var node_div_2 = document.createElement("div")
+                            var node_h3 = document.createElement("h4")
+                            var node_div_3 = document.createElement("div")
+                            var node_img = document.createElement("img")
+                            node_div_1.className = "row"
+                            node_div_2.className = "col-md-9 left-col"
+                            node_h3.innerHTML = mix
+
+                            node_div_2.appendChild(node_h3)
+                            node_div_1.appendChild(node_div_2)
+                            node_div_1.appendChild(node_div_3)
+                            document.getElementById('history').appendChild(node_div_1)
+                        }
+                    });
+
+                });
+            }
+        }  
     </script>
 </mobile>
